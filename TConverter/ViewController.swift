@@ -9,11 +9,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var celiusLabel: UILabel!
+    @IBOutlet weak var fahrenheitLabel: UILabel!
+    @IBOutlet weak var sliderOutlet: UISlider! {
+        didSet {
+            sliderOutlet.maximumValue = 100
+            sliderOutlet.minimumValue = 0
+            sliderOutlet.value = 0
+        }
     }
 
-
+    @IBAction func sliderAction(_ sender: UISlider) {
+        let temperatureCelsius = Int(round(sender.value))
+        print(temperatureCelsius)
+        celiusLabel.text = "\(temperatureCelsius) С"
+        let temperatureFahrenheit = Int(round(sender.value * 9 / 5) + 32)
+        fahrenheitLabel.text = "\(temperatureFahrenheit) F"
+    }
 }
 
